@@ -11,6 +11,6 @@ services:
     container_name: github-repo-manager
     volumes:
       - ${REPO_ROOT_PATH}:/repos
-      - ${GITHUB_SSH_KEY_PATH}:/root/.ssh:ro
+      - ${GITHUB_SSH_KEY_PATH}:/root/.ssh-host:ro
     stdin_open: true
     tty: true

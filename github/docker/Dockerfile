@@ -6,16 +6,17 @@ RUN apt-get update && apt-get install -y \
     openssh-client \
     curl \
     ca-certificates \
+    dos2unix \
     && rm -rf /var/lib/apt/lists/*
 
 # Configure git safe directory for the mounted volume
 RUN git config --global --add safe.directory /repos
 
-ARG GITHUB_EMAIL
-ARG GITHUB_USERNAME
-RUN git config --global user.email "${GITHUB_EMAIL}" && \
-    git config --global user.name "${GITHUB_USERNAME}"
+# Copy and register the entrypoint (sets git identity at runtime from env vars)
+COPY entrypoint.sh /entrypoint.sh
+RUN dos2unix /entrypoint.sh && chmod +x /entrypoint.sh
 
 WORKDIR /repos
 
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["bash"]

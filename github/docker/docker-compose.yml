@@ -4,10 +4,10 @@ services:
   dev-common-utilities:
     build:
       context: .
-      args:
-        GITHUB_EMAIL: ${GITHUB_EMAIL}
-        GITHUB_USERNAME: ${GITHUB_USERNAME}
       dockerfile: Dockerfile
+    environment:
+      GITHUB_EMAIL: ${GITHUB_EMAIL}
+      GITHUB_USERNAME: ${GITHUB_USERNAME}
     container_name: github-repo-manager
     volumes:
       - ${REPO_ROOT_PATH}:/repos

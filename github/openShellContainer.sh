@@ -1,0 +1,1 @@
+docker exec -it github-repo-manager bash

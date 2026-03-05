@@ -1,0 +1,16 @@
+name: open-me-dev-github
+
+services:
+  dev-common-utilities:
+    build:
+      context: .
+      args:
+        GITHUB_EMAIL: ${GITHUB_EMAIL}
+        GITHUB_USERNAME: ${GITHUB_USERNAME}
+      dockerfile: Dockerfile
+    container_name: github-repo-manager
+    volumes:
+      - ${REPO_ROOT_PATH}:/repos
+      - ${GITHUB_SSH_KEY_PATH}:/root/.ssh:ro
+    stdin_open: true
+    tty: true

@@ -1,0 +1,3 @@
+.ssh
+docker/.env
+config/config.json
